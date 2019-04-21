@@ -28,7 +28,13 @@ const QuestionsReducer = (state = initialState, action) => {
           return `${question.q_text}`.toLowerCase().includes(action.payload);
         })
       };
-
+    case actionTypes.FILTER_BY_ANSWERED:
+      return {
+        ...state,
+        filteredQuestions: state.filteredQuestions.filter(
+          question => question.answered && question
+        )
+      };
     default:
       return state;
   }

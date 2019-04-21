@@ -41,3 +41,10 @@ export const filterQuestions = query => {
     payload: query
   };
 };
+
+export const filterByAnswered = query => {
+  return {
+    type: actionTypes.FILTER_BY_ANSWERED,
+    payload: query
+  };
+};
