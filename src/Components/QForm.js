@@ -56,9 +56,9 @@ class QForm extends Component {
             onChange={this.textChangeHandler}
           />
 
-          {/* <Link to="/Qlist">
+          <Link to="/Qlist">
             <button type="submit">post</button>
-          </Link> */}
+          </Link>
         </div>
       </form>
     );
@@ -67,7 +67,8 @@ class QForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    askQ: question => dispatch(actionCreators.askQ(question))
+    askQ: question => dispatch(actionCreators.askQ(question)),
+    fetchMajors: major => dispatch(actionCreators.fetchMajors(major))
   };
 };
 
