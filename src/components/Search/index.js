@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import { connect } from "react-redux";
 import Qlist from "../Qlist";
 
 import * as actionCreators from "../../store/actions";
-import Qlist from "../Qlist";
 
 class Search extends Component {
   // state = {
@@ -102,7 +101,7 @@ class Search extends Component {
           />
           <div className="input-group-append">
             <span className="input-group-text">
-              <FontAwesomeIcon icon={faSearch} />
+              {/* <FontAwesomeIcon icon={faSearch} /> */}
             </span>
           </div>
         </div>
