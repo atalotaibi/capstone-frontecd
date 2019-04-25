@@ -9,10 +9,31 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div class="jumbotron jumbotron-fluid">
+        <div
+          class="jumbotron jumbotron-fluid"
+          style={{ borderRadius: "15px", border: "1px solid #f1f1f1" }}
+        >
           <div class="container">
             <h6 class="display-4" />
             <h9 class="display-4">HAVE A QUESTION ?</h9>
+            <br />
+            <br />
+            <br />
+            <div className="row justify-content-md-center">
+              {/* <div className="col-12">
+                <div
+                  class="form-group has-search"
+                  style={{ paddingLeft: "25%" }}
+                >
+                  <span class="fa fa-search form-control-feedback" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search"
+                  />
+                </div>
+              </div> */}
+            </div>
             <div class="container h-100">
               <div class="d-flex justify-content-center h-100">
                 <div class="searchbar">
@@ -30,18 +51,13 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        {/* <!-- Navigation --> */}
-        {/* <Header /> */}
-        {/* <!-- Header - set the background image for the header in the line below --> */}
-        {/* <div class="card bg-white text-white"> */}
-        {/* <!-- Top navigation --> */}
-        <div class="topnav">
+        <div class="topnav" style={{ marginTop: "-30px" }}>
           {/* <!-- Left-aligned links (default) --> */}
-          <a href="#news">News</a>
-          <a href="#contact">Contact</a>
-          <a href="#contact">Contact</a>
-          <a href="#search">Search</a>
-          <a href="#about">About</a>
+          <a>news</a>
+          <a>Contact</a>
+          <a>Contact</a>
+          <a>Search</a>
+          <a>About</a>
 
           {/* <!-- Right-aligned links --> */}
           <div class="topnav-right" />
