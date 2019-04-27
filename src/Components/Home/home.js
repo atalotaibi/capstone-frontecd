@@ -4,12 +4,17 @@ import { connect } from "react-redux";
 import Search from "../Search";
 import Footer from "../Footer";
 import Header from "../Header";
+
 import * as actionCreators from "../../store/actions";
+
+import Qlist from "../Qlist";
+
 
 class Home extends Component {
   render() {
     return (
       <div>
+
         <div
           class="jumbotron jumbotron-fluid"
           style={{ borderRadius: "15px", border: "1px solid #f1f1f1" }}
@@ -91,6 +96,16 @@ class Home extends Component {
           {/* <!-- Content section --> */}
           <section className="py-5" />
         </div>
+
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 col-sm-12 col-xs-12">
+              {" "}
+              <Qlist />
+            </div>
+          </div>
+        </div>
+
       </div>
     );
   }

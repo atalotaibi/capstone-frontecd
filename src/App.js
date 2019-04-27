@@ -83,6 +83,7 @@ class App extends Component {
 
       <div>
         {/* <Search /> */}
+
         <Switch>
           <BrowserRouter>
             <Header />
@@ -98,6 +99,7 @@ class App extends Component {
           </BrowserRouter>
         </Switch>
         <Footer />
+
       </div>
 
       // {/* <div className="App">

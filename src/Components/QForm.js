@@ -28,53 +28,55 @@ class QForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          {/* <input
+      <div className="form-group col-lg-12 col-12 mx-auto">
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            {/* <input
             className="orm-control"
             type="select"
             placeholder="select"
             name="major"
             onChange={this.textChangeHandler}
           /> */}
-          <select
-            type="select"
-            name="major"
-            onChange={this.majorChangeHandler}
-            className="form-control"
-          >
-            <option selected="selected">Select The Major</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <ReactQuill
-            modules={QForm.modules}
-            formats={QForm.formats}
-            name="q_text"
-            placeholder="Body"
-            onChange={this.textChangeHandler}
-          />
-          {/* <input
+            <select
+              type="select"
+              name="major"
+              onChange={this.majorChangeHandler}
+              className="form-control"
+            >
+              <option selected="selected">Select The Major</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <ReactQuill
+              modules={QForm.modules}
+              formats={QForm.formats}
+              name="q_text"
+              placeholder="Body"
+              onChange={this.textChangeHandler}
+            />
+            {/* <input
             className="form-control"
             type="text"
             placeholder="Ask"
             name="q_text"
             onChange={this.textChangeHandler}
           /> */}
-          <div>
-            {/* <Link to="/Qlist"> */}
-            <button type="submit" onClick={() => this.handleSubmit}>
-              post
-            </button>
-            {/* </Link> */}
+            <div>
+              {/* <Link to="/Qlist"> */}
+              <button type="submit" onClick={() => this.handleSubmit}>
+                post
+              </button>
+              {/* </Link> */}
+            </div>
+            {/* <button type="submit">post</button> */}
           </div>
-          {/* <button type="submit">post</button> */}
-        </div>
-      </form>
+        </form>
+      </div>
     );
   }
 }
