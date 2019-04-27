@@ -5,7 +5,10 @@ export {
   sendAnswer,
   filterQuestions,
   deleteQuestion,
-  filterQuestionsByMajor
+  filterQuestionsByMajor,
+  filterQuestionsByAnswer,
+  filterQuestionsByApprove,
+  fetchQDetail
 } from "./Question";
 export { setErrors } from "./errorsActions";
 export { login, logout, signup, checkForExpiredToken } from "./authentication";

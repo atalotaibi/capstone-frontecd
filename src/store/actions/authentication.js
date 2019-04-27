@@ -48,7 +48,7 @@ export const login = (userData, history) => {
 
       setAuthToken(token);
       dispatch(setCurrentUser(decodedUser));
-      history.push("Search");
+      history.push("/Home");
     } catch (error) {
       // console.error(error.response.data);
       dispatch({
