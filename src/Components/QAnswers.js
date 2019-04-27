@@ -22,19 +22,15 @@ class QAnswers extends Component {
     ));
     // }
 
-    return <tbody>{answer}</tbody>;
+    return <div>{answer}</div>;
   };
   render() {
     // const questionID = this.props.match.params.questionID;
     // const questionID = 1;
     return (
-      <div>
-        <div className="MessageContainer text-break">
-          <div className="MessagesList">
-            <table className="msg ml-3">{this.getView()}</table>
-          </div>
-          <div style={{ float: "left", clear: "both" }} />
-        </div>
+      <div className="form-group col-lg-12 col-12 mx-auto">
+        {this.getView()}
+
         <div className="footer1">
           {/* <AnswerForm questionID={questionID} /> */}
           <Link to="/Qlist" />

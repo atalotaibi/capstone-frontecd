@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Search from "../Search";
 import Footer from "../Footer";
 import Header from "../Header";
+import Qlist from "../Qlist";
 
 class Home extends Component {
   render() {
@@ -42,12 +43,21 @@ class Home extends Component {
               height: "300%"
             }}
           >
-            <div>
+            {/* <div>
               <Search />
-            </div>
+            </div> */}
           </header>
 
           <body>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12 col-sm-12 col-xs-12">
+                  {" "}
+                  <Qlist />
+                </div>
+              </div>
+            </div>
+
             {/* <!-- Navigation --> */}
             {/* <Header /> */}
             {/* <!-- Header - set the background image for the header in the line below --> */}

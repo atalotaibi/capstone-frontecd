@@ -23,30 +23,19 @@ class AnswerForm extends Component {
     console.log("A2 this QDI: ", questionID);
     return (
       <div>
-        <form className="col-11 mx-auto" onSubmit={this.submitAnswer}>
+        <form className="col-12 mx-auto" onSubmit={this.submitAnswer}>
           <ReactQuill
             modules={AnswerForm.modules}
             formats={AnswerForm.formats}
             value={a_text}
-            rows="4"
-            placeholder="Body"
+            rows="5"
+            placeholder="write your answer "
             onChange={e => this.setState({ a_text: e })}
-            onKeyUp={e => {
-              if (!e.shiftKey && e.key === "Enter") this.submitAnswer(e);
-            }}
           />
-          {/* <textarea
-                className="form-control"
-                rows="4"
-                placeholder="Type your answer here"
-                value={a_text}
-                onChange={e => this.setState({ a_text: e.target.value })}
-                onKeyUp={e => {
-                  if (!e.shiftKey && e.key === "Enter") this.submitAnswer(e);
-                }}
-              /> */}
-
-          <button className="btn btn-primary">Post</button>
+          <br />
+          <button className="btn btn-dark col-12 mx-auto">
+            <h5>Post</h5>
+          </button>
         </form>
       </div>
     );

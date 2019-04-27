@@ -25,6 +25,8 @@ class Search extends Component {
   render() {
     return (
       <div className="form-group col-lg-6 col-12 mx-auto">
+        <br />
+        <br />
         {/* <div className="form-group">
           <select
             type="select"

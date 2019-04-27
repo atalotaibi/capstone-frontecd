@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 
 // Fontawesome
 
@@ -11,15 +12,14 @@ class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
           <div className="container">
-            <a className="navbar-brand" href="#">
-              LookUp
-              {/* <img
+            <Link to="/Home">LookUp</Link>
+            LookUp
+            {/* <img
                     className="card-img-top"
                     src={linkedin_profile_image}
                     alt="hgh"
                     style={{ width: 350, height: 90 }}
                   /> */}
-            </a>
             <button
               className="navbar-toggler"
               type="button"
@@ -101,7 +101,9 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(actionCreators.logout())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navbar);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Navbar)
+);
