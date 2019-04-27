@@ -48,6 +48,9 @@ AnswerForm.modules = {
     [{ size: [] }],
     ["bold", "italic", "underline", "strike", "blockquote"],
     [{ list: "ordered" }, { list: "bullet" }],
+    [{ color: [] }],
+    [{ background: [] }],
+    [{ align: [] }],
     ["link", "image", "video"],
     ["clean"],
     ["code-block"]
@@ -68,7 +71,10 @@ AnswerForm.formats = [
   "link",
   "image",
   "video",
-  "code-block"
+  "code-block",
+  "color",
+  "background",
+  "align"
 ];
 
 const mapDispatchToProps = dispatch => {

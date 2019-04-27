@@ -82,7 +82,6 @@ class App extends Component {
         <div className="content-container">
           <Switch>
             <BrowserRouter>
-              <Header />
               <Route exact path="/Home" component={home} />
               <Route exact path="/signup" component={RegistrationForm} />
               <Route exact path="/login" component={LoginForm} />
@@ -95,7 +94,6 @@ class App extends Component {
             </BrowserRouter>
           </Switch>
         </div>
-        <Footer />
       </div>
 
       // {/* <div className="App">
