@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -165,9 +165,9 @@ class Search extends Component {
 
           <div className="AAB ">
             <span className="AAC">
-              <Link className="AAA" to="/QForm">
+              {/* <Link className="AAA" to="/QForm">
                 <FontAwesomeIcon icon={faPlusSquare} />
-              </Link>
+              </Link> */}
             </span>
           </div>
         </div>

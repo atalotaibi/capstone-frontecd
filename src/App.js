@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./assets/Animate.css";
 import Qlist from "./Components/Qlist";
 import QDetail from "./Components/َQDetail";
 
@@ -32,6 +33,10 @@ import questions from "./store/reducers/questionsReducer";
 import home from "./Components/Home/home";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
+library.add(faStroopwafel);
 
 class App extends Component {
   componentDidMount = async () => {
@@ -79,21 +84,22 @@ class App extends Component {
       <div>
         {/* <Search /> */}
 
-        <div className="content-container">
-          <Switch>
-            <BrowserRouter>
-              <Route exact path="/Home" component={home} />
-              <Route exact path="/signup" component={RegistrationForm} />
-              <Route exact path="/login" component={LoginForm} />
-              <Route exact path="/AnswerForm" component={AnswerForm} />
-              <Route exact path="/Search" component={Search} />
-              <Route exact path="/Qlist" component={Qlist} />
-              <Route path="/questions/:questionID" component={QDetail} />
-              <Route exact path="/QForm" component={QForm} />
-              <Route exact path="/QAnswers" component={QAnswers} />
-            </BrowserRouter>
-          </Switch>
-        </div>
+        <Switch>
+          <BrowserRouter>
+            <Header />
+            <Route path="/questions/:questionID" component={QDetail} />
+            <Route exact path="/login" component={LoginForm} />
+            <Route exact path="/home" component={home} />
+            <Route exact path="/signup" component={RegistrationForm} />
+            <Route exact path="/AnswerForm" component={AnswerForm} />
+            <Route exact path="/Search" component={Search} />
+            <Route exact path="/Qlist" component={Qlist} />
+            <Route exact path="/QForm" component={QForm} />
+            <Route exact path="/QAnswers" component={QAnswers} />
+          </BrowserRouter>
+        </Switch>
+        <Footer />
+
       </div>
 
       // {/* <div className="App">
