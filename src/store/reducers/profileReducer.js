@@ -14,11 +14,11 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         profile: action.payload
       };
-    case actionTypes.PROFILE_UPDATE:
-      return {
-        ...state,
-        profile: action.payload
-      };
+    // case actionTypes.PROFILE_UPDATE:
+    //   return {
+    //     ...state,
+    //     profile: action.payload
+    //   };
 
     default:
       return state;

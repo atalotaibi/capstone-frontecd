@@ -116,8 +116,6 @@ class QForm extends Component {
         <br /> <br /> <br /> <br />
         <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
       </div>
-
-    
     );
   }
 }
@@ -150,17 +148,11 @@ QForm.formats = [
   "video",
   "code-block"
 ];
-const mapStateToProps = state => {
-  return {
-    majors: state.majorReducer.majors
-  };
-};
-
-const mapStateToProps = state => {
-  return {
-    majors: state.questions.majors
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     majors: state.majorReducer.majors
+//   };
+// };
 
 const mapStateToProps = state => {
   return {

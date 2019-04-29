@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import { Search } from "../Search";
 import { Redirect, withRouter } from "react-router-dom";
-=======
 
 class LoginForm extends Component {
   state = {
@@ -27,7 +26,6 @@ class LoginForm extends Component {
   submitHandler = async (e, type) => {
     e.preventDefault();
 
-
     if (this.props.username && this.props.passsword) {
       this.setState({
         loginalertUsername: false,
@@ -37,16 +35,15 @@ class LoginForm extends Component {
     } else {
       this.setState({ loginalertUsername: true, loginalertPassword: true });
 
-
-    if (type === "login") {
-      await this.props.login(this.state);
-      this.props.fetchProfileDetail(
-        this.props.user.user_id,
-        this.props.history
-      );
-
+      if (type === "login") {
+        await this.props.login(this.state);
+        this.props.fetchProfileDetail(
+          this.props.user.user_id,
+          this.props.history
+        );
+      }
+      this.props.login(this.state, this.props.history);
     }
-    this.props.login(this.state, this.props.history);
   };
 
   render() {
@@ -56,7 +53,6 @@ class LoginForm extends Component {
       return <Redirect to="/Home" />;
     }
     return (
-
       <div class="signup-form animated bounceInDown">
         <form onSubmit={event => this.submitHandler(event, type)}>
           <h2>Log In</h2>
@@ -76,7 +72,6 @@ class LoginForm extends Component {
                 onChange={this.changeHandler}
               />
             </div>
-
           </div>
 
           <div class="form-group">
@@ -95,7 +90,6 @@ class LoginForm extends Component {
               />
             </div>
           </div>
-
 
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block btn-lg">
@@ -137,7 +131,6 @@ class LoginForm extends Component {
         <br />
         <br />
         <br />
-
       </div>
     );
   }

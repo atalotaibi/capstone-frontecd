@@ -10,14 +10,12 @@ import majorReducer from "./majorReducer";
 
 import profileReducer from "./profileReducer";
 
-
 export default combineReducers({
   questions: questions,
   authenticationReducer: authenticationReducer,
   errors: errorsReducer,
 
-  majorReducer: majorReducer
+  majorReducer: majorReducer,
 
   profileReducer: profileReducer
-
 });
