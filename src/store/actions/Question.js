@@ -149,7 +149,9 @@ export const approveAnswer = (answerID, status) => {
         approved: status
       });
 
+
       const status_ = res.data;
+
 
       dispatch({
         type: actionTypes.APPROVE_ANSWER,
@@ -164,7 +166,9 @@ export const approveQuestion = (questionID, status, history) => {
   return async dispatch => {
     try {
       await instance.put(`${questionID}/qstatus`, { approved: status });
+
       history.push("/Home");
+
     } catch (err) {
       console.error("ERROR: ", err);
     }

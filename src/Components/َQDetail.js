@@ -4,21 +4,23 @@ import AnswerForm from "./AnswerForm";
 import * as actionCreators from "../store/actions";
 import { connect } from "react-redux";
 import renderHTML from "react-render-html";
-import loading from "./Loading";
 
 class QDetail extends Component {
   state = {
     boolean: false,
     counter: this.props.counter
   };
+
   async componentDidMount() {
     console.log("from componentdidmount: ", this.props.match.params.questionID);
     await this.props.fetchQDetail(this.props.match.params.questionID);
+
   }
   componentDidUpdate(prevProps) {
     if (prevProps.counter !== this.props.counter) {
       this.setState({ counter: this.props.counter });
     }
+
     if (
       this.props.match.params.questionID !== prevProps.match.params.questionID
     ) {
@@ -28,9 +30,11 @@ class QDetail extends Component {
     }
   }
   render() {
+    console.log("Counter", this.state.counter);
     const { question } = this.props;
     console.log("Question : ", question);
     const questoinID = this.props.match.params.questionID;
+
     // this.props.fetchQDetail(questoinID);
     console.log(questoinID);
     const { profile } = this.props;
@@ -138,6 +142,7 @@ class QDetail extends Component {
                         </h4>
                       </div>
                     </div>
+
 
                     <div className="widget-content border-bottom">
                       <h4>About</h4>

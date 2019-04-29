@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { Link } from "react-router-dom";
+
 import { Search } from "../Search";
 import { Redirect, withRouter } from "react-router-dom";
+=======
+
 class LoginForm extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    loginalertUsername: false,
+    loginalertPassword: false
   };
   componentDidMount() {
     if (this.props.user) {
@@ -21,13 +26,27 @@ class LoginForm extends Component {
 
   submitHandler = async (e, type) => {
     e.preventDefault();
+
+
+    if (this.props.username && this.props.passsword) {
+      this.setState({
+        loginalertUsername: false,
+        loginalertPassword: false
+      });
+      this.props.login(this.state, this.props.history);
+    } else {
+      this.setState({ loginalertUsername: true, loginalertPassword: true });
+
+
     if (type === "login") {
       await this.props.login(this.state);
       this.props.fetchProfileDetail(
         this.props.user.user_id,
         this.props.history
       );
+
     }
+    this.props.login(this.state, this.props.history);
   };
 
   render() {
@@ -37,6 +56,7 @@ class LoginForm extends Component {
       return <Redirect to="/Home" />;
     }
     return (
+
       <div class="signup-form animated bounceInDown">
         <form onSubmit={event => this.submitHandler(event, type)}>
           <h2>Log In</h2>
@@ -46,6 +66,7 @@ class LoginForm extends Component {
               <span class="input-group-addon">
                 <i class="fa fa-user" />
               </span>
+
               <input
                 type="text"
                 class="form-control"
@@ -55,6 +76,7 @@ class LoginForm extends Component {
                 onChange={this.changeHandler}
               />
             </div>
+
           </div>
 
           <div class="form-group">
@@ -62,6 +84,7 @@ class LoginForm extends Component {
               <span class="input-group-addon">
                 <i class="fa fa-lock" />
               </span>
+
               <input
                 type="text"
                 class="form-control"
@@ -72,6 +95,7 @@ class LoginForm extends Component {
               />
             </div>
           </div>
+
 
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block btn-lg">
@@ -113,6 +137,7 @@ class LoginForm extends Component {
         <br />
         <br />
         <br />
+
       </div>
     );
   }

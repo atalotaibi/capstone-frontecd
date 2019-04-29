@@ -4,17 +4,22 @@ import * as actionCreators from "../store/actions";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
 class Answer extends Component {
   state = {
     checked: false
   };
+
   componentDidMount = () => {
     if (this.props.answer.approved) {
+
       console.log(this.props.answer.approved);
       this.setState({ checked: !this.state.checked });
       this.props.incrementCounter(true);
     }
+
   };
+
   handleClick = async () => {
     await this.setState({ checked: !this.state.checked });
     this.props.approveAnswer(this.props.answer.id, this.state.checked);
@@ -28,6 +33,7 @@ class Answer extends Component {
     const answer = this.props.answer;
     const { profile } = this.props;
     return (
+
       <div className="media-block card-box ribbon-content">
         <div className="media-left">
           <a
@@ -101,6 +107,7 @@ class Answer extends Component {
         </div>
         <br />
         <br />
+
       </div>
     );
   }

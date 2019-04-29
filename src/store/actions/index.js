@@ -15,6 +15,7 @@ export {
   fetchMajors
 } from "./Question";
 export { setErrors } from "./errorsActions";
+
 export {
   login,
   logout,
@@ -22,3 +23,4 @@ export {
   fetchProfileDetail,
   checkForExpiredToken
 } from "./authentication";
+

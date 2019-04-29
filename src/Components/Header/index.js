@@ -14,6 +14,7 @@ class Navbar extends Component {
   render() {
     console.log(this.props.user);
     return (
+
       <nav className="navbar navbar-expand-lg navbar-light bg-lightt">
         <div className="col-9">
           <NavLink to="/home">
@@ -48,6 +49,7 @@ class Navbar extends Component {
                   >
                     Logout {this.props.user.username}
                   </Link>
+
                   <div>
                     <span>
                       <Link
@@ -59,7 +61,9 @@ class Navbar extends Component {
                         <FontAwesomeIcon icon={faPlusSquare} />
                         <span> </span>post a question
                       </Link>
+
                     </span>
+
                   </div>
                 </li>
               ) : (
@@ -73,6 +77,7 @@ class Navbar extends Component {
                           marginLeft: 10
                         }}
                       />
+
                       <Link
                         style={{ textDecoration: "none", color: "black" }}
                         to="/signup"
@@ -85,6 +90,7 @@ class Navbar extends Component {
 
                   <li className="nav-item">
                     <span>
+
                       <i
                         className="fas fa-sign-in-alt"
                         style={{

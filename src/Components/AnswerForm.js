@@ -20,6 +20,7 @@ class AnswerForm extends Component {
   render() {
     const { a_text } = this.state;
     const questionID = this.props.id;
+
     return (
       <div>
         <form className="col-12 mx-auto" onSubmit={this.submitAnswer}>

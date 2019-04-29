@@ -22,6 +22,9 @@ class RegistrationForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // handleFileUpload(e) {
+  // const file = e.target.files[0];
+
   submitHandler = (e, type) => {
     e.preventDefault();
     if (type === "signup") {
@@ -115,6 +118,7 @@ class RegistrationForm extends Component {
                 onChange={this.changeHandler}
               />
             </div>
+
           </div>
 
           <div class="form-group">
@@ -145,6 +149,7 @@ class RegistrationForm extends Component {
         <br />
         <br />
         <br />
+
       </div>
     );
   }

@@ -15,6 +15,7 @@ class Home extends Component {
     const majorList = majors.map(major => major.major);
     return (
       <div>
+
         <div
           className="jumbotron jumbotron-fluid"
           style={{ borderRadius: "15px", border: "1px solid #f1f1f1" }}
@@ -45,6 +46,7 @@ class Home extends Component {
                   <a href="#" className="search_icon">
                     <i class="fas fa-search" />
                   </a>
+
                 </div>
               </div>
             </div>

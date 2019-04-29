@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import * as actionCreators from "../store/actions";
 // Components
 import Answer from "./Answer";
-import AnswerForm from "./AnswerForm";
 import { Link } from "react-router-dom";
 
 class QAnswers extends Component {
@@ -30,8 +29,10 @@ class QAnswers extends Component {
   };
   render() {
     return (
+
       <div className="form-group col-lg-12 col-12 mx-auto">
         {this.getView()}
+
       </div>
     );
   }
