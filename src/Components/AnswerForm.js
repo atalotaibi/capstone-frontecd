@@ -10,6 +10,7 @@ class AnswerForm extends Component {
 
   submitAnswer = e => {
     e.preventDefault();
+    console.log(e);
     const questionID = this.props.id;
     this.props.sendAnswer(this.state, questionID, this.resetForm);
   };
@@ -22,30 +23,19 @@ class AnswerForm extends Component {
 
     return (
       <div>
-        <form className="col-11 mx-auto" onSubmit={this.submitAnswer}>
+        <form className="col-12 mx-auto" onSubmit={this.submitAnswer}>
           <ReactQuill
             modules={AnswerForm.modules}
             formats={AnswerForm.formats}
             value={a_text}
-            rows="4"
-            placeholder="Body"
+            rows="5"
+            placeholder="write your answer "
             onChange={e => this.setState({ a_text: e })}
-            onKeyUp={e => {
-              if (!e.shiftKey && e.key === "Enter") this.submitAnswer(e);
-            }}
           />
-          {/* <textarea
-                className="form-control"
-                rows="4"
-                placeholder="Type your answer here"
-                value={a_text}
-                onChange={e => this.setState({ a_text: e.target.value })}
-                onKeyUp={e => {
-                  if (!e.shiftKey && e.key === "Enter") this.submitAnswer(e);
-                }}
-              /> */}
-
-          <button className="btn btn-primary">Post</button>
+          <br />
+          <button className="btn btn-dark col-12 mx-auto">
+            <h5>Post</h5>
+          </button>
         </form>
       </div>
     );
@@ -58,6 +48,9 @@ AnswerForm.modules = {
     [{ size: [] }],
     ["bold", "italic", "underline", "strike", "blockquote"],
     [{ list: "ordered" }, { list: "bullet" }],
+    [{ color: [] }],
+    [{ background: [] }],
+    [{ align: [] }],
     ["link", "image", "video"],
     ["clean"],
     ["code-block"]
@@ -78,7 +71,10 @@ AnswerForm.formats = [
   "link",
   "image",
   "video",
-  "code-block"
+  "code-block",
+  "color",
+  "background",
+  "align"
 ];
 
 const mapDispatchToProps = dispatch => {

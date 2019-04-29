@@ -2,152 +2,116 @@ import React, { Component } from "react";
 import { from } from "react-redux";
 import { connect } from "react-redux";
 import Search from "../Search";
-import Footer from "../Footer";
+
 import Header from "../Header";
+
+import * as actionCreators from "../../store/actions";
+
+import Qlist from "../Qlist";
 
 class Home extends Component {
   render() {
+    const { majors } = this.props;
+    const majorList = majors.map(major => major.major);
     return (
       <div>
-        <html lang="en">
-          <head>
-            <meta charSet="utf-8" />
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1, shrink-to-fit=no"
-            />
-            <meta name="description" content="" />
-            <meta name="author" content="" />
 
-            <title>Full Width Pics - Start Bootstrap Template</title>
-            {/* <!-- Bootstrap core CSS --> */}
+        <div
+          className="jumbotron jumbotron-fluid"
+          style={{ borderRadius: "15px", border: "1px solid #f1f1f1" }}
+        >
+          <div className="container">
+            <h6 className="display-4" />
+            <h9 className="display-4">HAVE A QUESTION ?</h9>
+            <h3 className="display-4">
+              Facing a difficult problem?{" "}
+              <strong style={{ color: "#de8d72" }}>Lookup</strong> the solution!
+            </h3>
+            <br />
+            <br />
+            <br />
+            <div className="row justify-content-md-center" />
+            <div className="container h-100">
+              <div className="d-flex justify-content-center h-100">
+                <div className="searchbar">
+                  <input
+                    className="search_input"
+                    type="text"
+                    name=""
+                    placeholder="Search..."
+                    onChange={event => {
+                      this.props.filterQuestions(event.target.value);
+                    }}
+                  />
+                  <a href="#" className="search_icon">
+                    <i class="fas fa-search" />
+                  </a>
 
-            <link
-              href="vendor/bootstrap/css/bootstrap.min.css"
-              rel="stylesheet"
-            />
-
-            {/* <!-- Custom styles for this template --> */}
-            <link href="css/full-width-pics.css" rel="stylesheet" />
-          </head>
-
-          <header
-            className="py-5 bg-image-full"
-            style={{
-              backgroundImage:
-                "url(" +
-                "https://images.pexels.com/photos/545057/pexels-photo-545057.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" +
-                ")",
-              width: "100%",
-              height: "300%"
-            }}
-          />
-
-          <body>
-            {/* <!-- Navigation --> */}
-            {/* <Header /> */}
-            {/* <!-- Header - set the background image for the header in the line below --> */}
-            <div className="container my-11">
-              <br />
-              <div class="row">
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                  <div class="card h-100">
-                    <a href="#">
-                      <img
-                        class="card-img-top"
-                        src="http://static1.squarespace.com/static/583ed05c59cc68a8c3e45c0f/584331c3725e25d0d2a9f24c/5856a606f5e2315e3ef8b08a/1549242754691/vision.png?format=1500w"
-                        alt=""
-                      />
-                    </a>
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#">Vision</a>
-                      </h4>
-                      <p class="card-text">Our Vision is to reach the sky.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                  <div class="card h-100">
-                    <a href="#">
-                      <img
-                        class="card-img-top"
-                        src="https://www.approach.be/en/images/mission_statement_approach-min9c1b.jpg"
-                        alt=""
-                      />
-                    </a>
-                    <br />
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#">Mission</a>
-                      </h4>
-                      <p class="card-text">
-                        Our mission is to create an education society between
-                        all the students around the world.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-                  <div class="card h-100">
-                    <a href="#">
-                      <img
-                        class="card-img-top"
-                        src="http://chittagongit.com/images/black-search-icon-png/black-search-icon-png-26.jpg"
-                        alt=""
-                      />
-                    </a>
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#">How To Use ?</a>
-                      </h4>
-                      <p class="card-text" />
-                    </div>
-                  </div>
                 </div>
               </div>
-              <br />
-
-              {/* <!-- Image Section - set the background image for the header in the line below --> */}
-              <section
-                className="py-5 bg-image-full"
-                style={{
-                  backgroundImage:
-                    "url(" + "https://unsplash.it/1900/1080?image=1081" + ")"
-                }}
-              >
-                {/* <!-- Put anything you want here! There is just a spacer below for demo purposes! --> */}
-                <div style={{ height: 200 }} />
-              </section>
-
-              {/* <!-- Content section --> */}
-              <section className="py-5">
-                <div className="container">
-                  <h1>We will add something</h1>
-                  <p className="lead">Twaiq Bootcamp</p>
-                  <p>This is just a pretty, elegant and simple example.</p>
-                </div>
-              </section>
             </div>
+          </div>
+        </div>
 
-            {/* <!-- Bootstrap core JavaScript --> */}
-            <script src="vendor/jquery/jquery.min.js" />
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" />
-          </body>
-        </html>
+        <div className="topnav" style={{ marginTop: "-30px" }}>
+          <a onClick={event => this.props.filterQuestionsByApprove("true")}>
+            <i className="fas fa-thumbs-up" />
+            Approved Questions
+          </a>
+          <a onClick={event => this.props.filterQuestionsByApprove("false")}>
+            <i className="fas fa-minus-square" />
+            {"  "}Unapproved Questions
+          </a>
+          <a onClick={event => this.props.fetchQ(event.target.value)}>
+            <i className="fas fa-globe" />
+            {"  "} All
+          </a>
+          <a onClick={event => this.props.filterQuestionsByAnswer("true")}>
+            <i className="fas fa-comment" />
+            {"  "}Answered Questions
+          </a>
+          <a onClick={event => this.props.filterQuestionsByAnswer("false")}>
+            <i className="fas fa-comment-slash" />
+            UnAnswered
+          </a>
+
+          <div className="topnav-right" />
+        </div>
+        <div className="listing-gridd" />
+
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 col-sm-12 col-xs-12">
+              {" "}
+              <Qlist />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {};
-}
-
-export default connect(mapStateToProps)(Home);
+const mapStateToProps = state => {
+  return {
+    user: state.authenticationReducer.user,
+    majors: state.questions.majors
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    filterQuestions: query => dispatch(actionCreators.filterQuestions(query)),
+    filterQuestionsByMajor: major =>
+      dispatch(actionCreators.filterQuestionsByMajor(major)),
+    filterQuestionsByAnswer: status =>
+      dispatch(actionCreators.filterQuestionsByAnswer(status)),
+    filterQuestionsByApprove: status =>
+      dispatch(actionCreators.filterQuestionsByApprove(status)),
+    fetchQ: () => dispatch(actionCreators.fetchQ()),
+    reset: () => dispatch({ type: "RESET" })
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

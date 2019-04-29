@@ -25,20 +25,14 @@ class QAnswers extends Component {
       <Answer key={answer.id} answer={answer} />
     ));
 
-    return <tbody>{answer}</tbody>;
+    return <div>{answer}</div>;
   };
   render() {
     return (
-      <div>
-        <div className="MessageContainer text-break">
-          <div className="MessagesList">
-            <table className="msg ml-3">{this.getView()}</table>
-          </div>
-          <div style={{ float: "left", clear: "both" }} />
-        </div>
-        <div className="footer1">
-          <Link to="/Qlist" />
-        </div>
+
+      <div className="form-group col-lg-12 col-12 mx-auto">
+        {this.getView()}
+
       </div>
     );
   }

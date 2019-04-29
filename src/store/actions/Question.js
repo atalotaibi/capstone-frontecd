@@ -15,7 +15,7 @@ export const askQ = (Q, history) => {
         type: actionTypes.ASK_Q,
         payload: newQ
       });
-      history.push("/Search");
+      history.push("/Home");
     } catch (error) {
       console.error(error.response.data);
     }
@@ -105,7 +105,7 @@ export const deleteQuestion = (questionID, history) => {
         type: actionTypes.DELETE_QUESTION,
         payload: questionID
       });
-      history.push("/Search");
+      history.push("/home");
     } catch (err) {
       console.error("Error while deleteing the cart item", err);
     }
@@ -149,7 +149,9 @@ export const approveAnswer = (answerID, status) => {
         approved: status
       });
 
+
       const status_ = res.data;
+
 
       dispatch({
         type: actionTypes.APPROVE_ANSWER,
@@ -164,7 +166,9 @@ export const approveQuestion = (questionID, status, history) => {
   return async dispatch => {
     try {
       await instance.put(`${questionID}/qstatus`, { approved: status });
-      history.push("/Search");
+
+      history.push("/Home");
+
     } catch (err) {
       console.error("ERROR: ", err);
     }

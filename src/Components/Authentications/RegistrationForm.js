@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class RegistrationForm extends Component {
   state = {
@@ -13,7 +14,7 @@ class RegistrationForm extends Component {
   };
   componentDidMount() {
     if (this.props.user) {
-      this.props.history.push("/Search");
+      this.props.history.push("/Home");
     }
   }
 
@@ -35,39 +36,49 @@ class RegistrationForm extends Component {
 
   render() {
     const type = this.props.match.url.substring(1);
+    if (this.props.user) {
+      return <Redirect to="/Home" />;
+    }
     return (
-      <div className="card col-6 mx-auto p-0 mt-5">
-        <div className="card-body">
-          <h5 className="card-title mb-4" />
-          <form onSubmit={event => this.submitHandler(event, type)}>
-            <div className="form-group">
+      <div class="signup-form animated bounceInDown">
+        <form onSubmit={event => this.submitHandler(event, type)}>
+          <h2>Create Account</h2>
+          <p class="lead">It's free and hardly takes more than 30 seconds.</p>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-user" />
+              </span>
               <input
-                className="form-control"
                 type="text"
-                placeholder="Username"
+                class="form-control"
                 name="username"
+                placeholder="Username"
+                required="required"
                 onChange={this.changeHandler}
               />
             </div>
-            <div className="form-group">
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-user" />
+              </span>
               <input
-                className="form-control"
-                type="password"
-                placeholder="Password"
-                name="password"
-                onChange={this.changeHandler}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className="form-control"
                 type="text"
-                placeholder="First Name"
+                class="form-control"
                 name="first_name"
+                placeholder="first Name"
+                required="required"
                 onChange={this.changeHandler}
               />
             </div>
-            <div className="form-group">
+          </div>
+          <div className="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-user" />
+              </span>
               <input
                 className="form-control"
                 type="text"
@@ -76,35 +87,69 @@ class RegistrationForm extends Component {
                 onChange={this.changeHandler}
               />
             </div>
-            <div className="form-group">
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-paper-plane" />
+              </span>
               <input
-                className="form-control"
-                type="text"
-                placeholder="Email"
+                type="email"
+                class="form-control"
                 name="email"
+                placeholder="Email Address"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-lock" />
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                name="password"
+                placeholder="Password"
+                required="required"
                 onChange={this.changeHandler}
               />
             </div>
-            <input type="file" onChange={this.handleFileUpload} />
 
-            <input
-              className="btn btn-primery btn-block"
-              style={{ color: "#FFF", backgroundColor: "#696969" }}
-              type="submit"
-              value={type.replace(/^\w/, c => c.toUpperCase())}
-            />
-          </form>
-        </div>
-        <div className="card-footer text-center">
-          <Link
-            to={type === "login" ? "/signup" : "/login"}
-            className="btn btn-small btn-link"
-          >
-            {type === "login"
-              ? "Register an account"
-              : "Login with an existing account"}
-          </Link>
-        </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">
+              Sign Up
+            </button>
+          </div>
+          <p class="small text-center">
+            By clicking the Sign Up button, you agree to our
+            <br />
+            <a href="#">Terms &amp; Conditions</a>, and{" "}
+            <a href="#">Privacy Policy</a>.
+          </p>
+          <div class="text-center">
+            Already have an account? <a href="#">Login here</a>.
+          </div>
+        </form>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
       </div>
     );
   }
@@ -122,6 +167,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(RegistrationForm);
-// export default connect(
-//     mapStateToProps,
-// )(RegistrationForm);

@@ -1,102 +1,118 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
+import logo from "../../assets/images/Screenshot 2019-04-27 at 22.21.54.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import questionsReducer from "../../store/reducers/questionsReducer";
 
 // Fontawesome
 
 class Navbar extends Component {
   render() {
+    console.log(this.props.user);
     return (
-      <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-          <div className="container">
-            <Link to="/Home">
-              <a className="navbar-brand" href="#">
-                LookUp
-                {/* <img
-                    className="card-img-top"
-                    src={linkedin_profile_image}
-                    alt="hgh"
-                    style={{ width: 350, height: 90 }}
-                  /> */}
-              </a>
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarResponsive"
-              aria-controls="navbarResponsive"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-            {/* <div className="col-xl-8 col-lg-8  ">
-              <Search history={this.props.history} />
-            </div> */}
-            <div className="col-xl-4 col-lg-4  float-right">
-              <div className="user-panel">
-                {this.props.user ? (
+
+      <nav className="navbar navbar-expand-lg navbar-light bg-lightt">
+        <div className="col-9">
+          <NavLink to="/home">
+            <img className="ssize" src={logo} />
+          </NavLink>
+        </div>
+        <div className="col-3d">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              {this.props.user ? (
+                <li className="nav-item">
+                  <i className="fas fa-sign-out-alt" />
+                  {/* <a class="nav-link" /> comment this out */}
+                  <Link
+                    onClick={() => this.props.logout()}
+                    to="Home"
+                    style={{
+                      color: "black"
+                    }}
+                  >
+                    Logout {this.props.user.username}
+                  </Link>
+
                   <div>
-                    <div className="up-item ml-3">
-                      <i class="fas fa-user-circle" />
-                      <Link to="/profile">{this.props.user.username}</Link>
-                    </div>
-                    <div className="up-item ml-3">
-                      <i class="fas fa-sign-out-alt" />
-                      <Link onClick={() => this.props.logout()} to="Home">
-                        Log Out
+                    <span>
+                      <Link
+                        style={{
+                          color: "black"
+                        }}
+                        to={this.props.user ? "/QForm" : "/login"}
+                      >
+                        <FontAwesomeIcon icon={faPlusSquare} />
+                        <span> </span>post a question
                       </Link>
-                    </div>
-                    <div className="up-item">
-                      <div className="shopping-card">
-                        <i className="flaticon-bag" />
-                      </div>
-                      <Link to="/QForm">Ask Question</Link>
-                    </div>
+
+                    </span>
+
                   </div>
-                ) : (
-                  <div className="navbar-nav ml-auto">
-                    <div className="up-item ml-3">
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <span>
                       <i
-                        class="fas fa-user-plus"
-                        style={{ color: "gray", marginLeft: 5 }}
+                        className="fas fa-user-plus"
+                        style={{
+                          color: "black",
+                          marginLeft: 10
+                        }}
                       />
-                      <Link to="/Search">Search</Link>
-                    </div>
-                    <div className="up-item ml-3">
+
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to="/signup"
+                      >
+                        SignUp
+                      </Link>
+                      {/* <a className="nav-link">SignUp</a> */}
+                    </span>
+                  </li>
+
+                  <li className="nav-item">
+                    <span>
+
                       <i
-                        class="fas fa-user-plus"
-                        style={{ color: "gray", marginLeft: 5 }}
+                        className="fas fa-sign-in-alt"
+                        style={{
+                          color: "black",
+                          marginLeft: 10
+                        }}
                       />
-                      <Link to="/signup">Sign up</Link>
-                    </div>
-                    <div className="up-item ml-3">
-                      <i
-                        class="fas fa-sign-in-alt"
-                        style={{ color: "gray", marginLeft: 5 }}
-                      />
-                      <Link to="/login">Sign In</Link>
-                      {/* <li className="nav-item">
-                        <a className="nav-link" href="#">
-                          Services
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link" href="#">
-                          Contact
-                        </a>
-                      </li> */}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+                      {/* <a class="nav-link">SignIn</a> comment this out */}
+                      <Link
+                        style={{ textDecoration: "none", color: "black" }}
+                        to="/login"
+                      >
+                        SignIn
+                      </Link>
+                    </span>
+                  </li>
+                </>
+              )}
+            </ul>
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     );
   }
 }
@@ -109,7 +125,9 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(actionCreators.logout())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navbar);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Navbar)
+);

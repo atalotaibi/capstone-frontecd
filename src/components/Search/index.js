@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Qlist from "../Qlist";
@@ -14,6 +16,28 @@ class Search extends Component {
     return (
       <div className="form-group col-lg-6 col-12 mx-auto">
         <br />
+
+        <br />
+        {/* <div className="form-group">
+          <select
+            type="select"
+            placeholder="select"
+            name="major"
+            onChange={event =>
+              event.target.value
+                ? this.props.filterQuestionsByMajor(event.target.value)
+                : this.props.reset() && this.props.fetchQ()
+            }
+            multiple="multiple"
+            className="form-control"
+          >
+            <option value="greeting">greeting</option>
+            <option value="math">math</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div> */}
+
         <div className="form-check form-check-inline">
           <input
             className="form-check-input"
@@ -328,9 +352,7 @@ class Search extends Component {
 
           <div className="AAB ">
             <span className="AAC">
-              <Link className="AAA" to={this.props.user ? "/QForm" : "/login"}>
-                <FontAwesomeIcon icon={faPlusSquare} />
-              </Link>
+
             </span>
           </div>
         </div>

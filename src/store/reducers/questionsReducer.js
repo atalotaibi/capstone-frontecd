@@ -67,12 +67,16 @@ const questionsReducer = (state = initialState, action) => {
         ...state,
         flag_: true,
         filteredQuestions: state.questions.filter(question => {
-          if (question.major.major === action.payload) {
+
+          if (question.major.toString() === action.payload) {
+
             return `${question.q_text}`.toLowerCase();
           }
         }),
         question1: state.questions.filter(question => {
-          if (question.major.major === action.payload) {
+
+          if (question.major.toString() === action.payload) {
+
             return `${question.q_text}`.toLowerCase();
           }
         })

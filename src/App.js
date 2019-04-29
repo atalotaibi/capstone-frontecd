@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./assets/Animate.css";
 import Qlist from "./Components/Qlist";
 import QDetail from "./Components/َQDetail";
 
@@ -36,6 +37,10 @@ import ProfileDetail from "./Components/Profile";
 import home from "./Components/Home/home";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
+library.add(faStroopwafel);
 
 
 class App extends Component {
@@ -46,26 +51,29 @@ class App extends Component {
 
   render() {
     return (
-      <div>
 
-        <div className="content-container">
+      <div className="row">
+        <div className="col-12">
           <Switch>
             <BrowserRouter>
               <Header />
-              <Route exact path="/Home" component={home} />
-              <Route exact path="/signup" component={RegistrationForm} />
+
               <Route exact path="/login" component={LoginForm} />
+              <Route exact path="/home" component={home} />
+              <Route exact path="/signup" component={RegistrationForm} />
               <Route exact path="/AnswerForm" component={AnswerForm} />
               <Route exact path="/Search" component={Search} />
               <Route exact path="/Qlist" component={Qlist} />
 
-              <Route path="/questions/:questionID" component={QDetail} />
               <Route exact path="/QForm" component={QForm} />
               <Route exact path="/QAnswers" component={QAnswers} />
-              <Route exact path="/Profile" component={ProfileDetail} />
-              <Footer />
+              <Route path="/questions/:questionID" component={QDetail} />
             </BrowserRouter>
           </Switch>
+        </div>
+        <div className="col-12">
+          <Footer />
+
         </div>
         
       </div>

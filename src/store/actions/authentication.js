@@ -88,7 +88,9 @@ export const fetchProfileDetail = (userID, history) => {
         type: actionTypes.FETCH_PROFILE_DETAIL,
         payload: userprofile
       });
-      history.push("Search");
+
+      history.push("home");
+
     } catch (error) {
       console.error(error);
     }
