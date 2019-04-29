@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
@@ -20,10 +19,14 @@ class LoginForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = (e, type) => {
+  submitHandler = async (e, type) => {
     e.preventDefault();
     if (type === "login") {
-      this.props.login(this.state, this.props.history);
+      await this.props.login(this.state);
+      this.props.fetchProfileDetail(
+        this.props.user.user_id,
+        this.props.history
+      );
     }
   };
 
@@ -85,6 +88,31 @@ class LoginForm extends Component {
             Already have an account? <a href="#">Login here</a>.
           </div>
         </form>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }
@@ -92,15 +120,17 @@ class LoginForm extends Component {
 
 const mapDispatchToProps = dispatch => ({
   login: (userData, history) =>
-    dispatch(actionCreators.login(userData, history))
+    dispatch(actionCreators.login(userData, history)),
+  fetchProfileDetail: (userID, history) =>
+    dispatch(actionCreators.fetchProfileDetail(userID, history))
 });
 
 const mapStateToProps = state => ({
   user: state.authenticationReducer.user,
   error: state.errors
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoginForm);
-

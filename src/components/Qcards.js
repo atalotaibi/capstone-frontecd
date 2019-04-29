@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 class Qcards extends Component {
   render() {
     const { question } = this.props;
+    console.log("status", question.answered);
     return (
       <div>
         <div className="panel-body">
@@ -19,15 +20,16 @@ class Qcards extends Component {
                     <a
                       data-toggle="tooltip"
                       data-placement="bottom"
-                      data-original-title="Martina Jaz"
+                      data-original-title={question.asked_by.username}
                       href="#"
                     >
                       <img
                         alt=""
                         className="img-responsive center-block"
-                        src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Jon_Kyl%2C_official_portrait%2C_115th_Congress.jpg"
+                        src={question.asked_by.image}
                       />
                     </a>
+                    <h4 className="userq">{question.asked_by.username}</h4>
                   </div>
                   <div className="col-md-9 col-sm-8  col-xs-12">
                     <h3>
@@ -45,15 +47,12 @@ class Qcards extends Component {
                     <div className="listing-meta">
                       {" "}
                       <span>
-                        <i class="fa fa-clock-o" aria-hidden="true" />8 mintes
-                        ago
+                        <i class="fa fa-clock-o" aria-hidden="true" />
+                        {question.created_on}
                       </span>{" "}
-                      <span>
-                        <i class="fa fa fa-eye" aria-hidden="true" /> 750 Views
-                      </span>
                     </div>
-                    <div className="pull-right tagcloud">
-                      <a href="">Php</a>
+                    <div className=" tagcloud">
+                      <a href="">{question.major.major}</a>
                     </div>
                   </div>
                   <div className="col-md-1 col-sm-2 col-xs-12">
@@ -65,7 +64,7 @@ class Qcards extends Component {
                           data-placement="bottom"
                           data-original-title="Answers"
                         >
-                          <span>2</span>
+                          <span>{question.answers.length}</span>
                         </a>
                       </li>
                       <span> </span>

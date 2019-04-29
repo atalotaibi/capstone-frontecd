@@ -1,14 +1,34 @@
 import React, { Component } from "react";
 import renderHTML from "react-render-html";
+import * as actionCreators from "../store/actions";
+import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 class Answer extends Component {
+  state = {
+    checked: false
+  };
+  componentDidMount = () => {
+    if (this.props.answer.approved) {
+      console.log(this.props.answer.approved);
+      this.setState({ checked: !this.state.checked });
+      this.props.incrementCounter(true);
+    }
+  };
+  handleClick = async () => {
+    await this.setState({ checked: !this.state.checked });
+    this.props.approveAnswer(this.props.answer.id, this.state.checked);
+  };
+  changeApproved = async () => {
+    await this.setState({ checked: !this.state.checked });
+    this.props.approveAnswer(this.props.answer.id, this.state.checked);
+  };
+
   render() {
     const answer = this.props.answer;
+    const { profile } = this.props;
     return (
       <div className="media-block card-box ribbon-content">
-        <div className="ribbon base">
-          <span>Approved</span>
-        </div>
-
         <div className="media-left">
           <a
             data-toggle="tooltip"
@@ -19,7 +39,7 @@ class Answer extends Component {
             <img
               className="img-sm"
               alt="Profile Picture"
-              src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Jon_Kyl%2C_official_portrait%2C_115th_Congress.jpg"
+              src={answer.answered_by && answer.answered_by.image}
             />
           </a>
         </div>
@@ -30,42 +50,76 @@ class Answer extends Component {
                 href="#"
                 class="btn-link text-semibold media-heading box-inline"
               >
-                Muhammad Umair
+                {answer.answered_by && answer.answered_by.username}
               </a>
             </h4>
-            <p className="text-muted text-sm">
-              <i className="fa fa-mobile fa-lg" /> - From Mobile - 11 min ago
-            </p>
           </div>
           <h5>{renderHTML(answer.a_text)}</h5>
-          <div />
-          <div className="pad-ver pull-right">
-            <a
-              className="btn btn-sm btn-default btn-hover-success"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              data-original-title="Like This Answer"
-              href="#"
-            >
-              <i class="fa fa-thumbs-up" />
-            </a>
-            <a
-              className="btn btn-sm btn-default btn-hover-danger"
-              href="#"
-              data-original-title="Spam"
-              data-placement="bottom"
-              data-toggle="tooltip"
-            >
-              <i className="fa fa-thumbs-down" />
-            </a>
-            <a class="btn btn-sm btn-default btn-hover-primary" href="#">
-              Mark As Correct
-            </a>
+          <div className="row">
+            <div className="col-2">
+              {profile && profile.is_expert ? (
+                <div>
+                  {answer.approved ? (
+                    <div className="">
+                      <a
+                        class="btn btn-sm btn-default btn-hover-primary"
+                        onClick={this.changeApproved}
+                      >
+                        Mark As Uncorrect
+                      </a>
+                    </div>
+                  ) : (
+                    <div className="">
+                      <a
+                        class="btn btn-sm btn-default btn-hover-primary"
+                        onClick={this.handleClick}
+                      >
+                        Mark As Correct
+                      </a>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  {answer.approved ? (
+                    <FontAwesomeIcon icon={faCheck} />
+                  ) : (
+                    <div />
+                  )}
+                </div>
+              )}
+            </div>
+            {/* <div className="col-10">
+              <h4>{renderHTML(answer.a_text)}</h4>
+            </div>{" "} */}
           </div>
+          {/* <div className="pad-ver pull-right">
+            <a class="btn btn-sm btn-default btn-hover-primary" onClick={this.handleClick}>
+              Mark As Uncorrect
+            </a>
+          </div> */}
         </div>
+        <br />
+        <br />
       </div>
     );
   }
 }
 
-export default Answer;
+const mapStateToProps = state => {
+  return {
+    profile: state.authenticationReducer.profile
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    approveAnswer: (answerID, status) =>
+      dispatch(actionCreators.approveAnswer(answerID, status)),
+    incrementCounter: status =>
+      dispatch(actionCreators.incrementCounter(status))
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Answer);

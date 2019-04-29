@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import QAnswers from "./QAnswers";
 import AnswerForm from "./AnswerForm";
@@ -8,25 +7,38 @@ import renderHTML from "react-render-html";
 import loading from "./Loading";
 
 class QDetail extends Component {
-  componentDidMount() {
-    console.log("qid is: ", this.props.match.params.questionID);
-    this.props.fetchQDetail(this.props.match.params.questionID);
+  state = {
+    boolean: false,
+    counter: this.props.counter
+  };
+  async componentDidMount() {
+    console.log("from componentdidmount: ", this.props.match.params.questionID);
+    await this.props.fetchQDetail(this.props.match.params.questionID);
   }
   componentDidUpdate(prevProps) {
+    if (prevProps.counter !== this.props.counter) {
+      this.setState({ counter: this.props.counter });
+    }
     if (
-      this.props.match.params.questoinID !== prevProps.match.params.questoiinID
+      this.props.match.params.questionID !== prevProps.match.params.questionID
     ) {
+      this.props.resetCounter();
       this.props.reset();
-
       this.props.fetchQDetail(this.props.match.params.questionID);
     }
   }
   render() {
     const { question } = this.props;
+    console.log("Question : ", question);
     const questoinID = this.props.match.params.questionID;
+    // this.props.fetchQDetail(questoinID);
+    console.log(questoinID);
+    const { profile } = this.props;
     return (
-      <div className="form-group col-lg-10 col-12 mx-auto">
-        <div class="main-content-area">
+      <div className="form-group col-lg-12 col-12 mx-auto">
+        <br />
+        <br />
+        <div className="main-content-area">
           <div className="container">
             <div className="row">
               <div className="col-md-8 col-lg-8 col-sm-12 col-xs-12">
@@ -36,93 +48,98 @@ class QDetail extends Component {
                       <div className="cardn w-100">
                         <div className="card-body noborder">
                           <a href="#">{renderHTML(question.q_text || "")}</a>
-                          <button
-                            onClick={() =>
-                              this.props.deleteQuestion(
-                                questoinID,
-                                this.props.history
-                              )
-                            }
-                            className="pull-rightt btn btn-danger"
-                          >
-                            Remove
-                          </button>
                         </div>
                       </div>
                       <div className="listing-meta">
-                        {" "}
                         <span>
-                          <i className="fa fa-clock-o" aria-hidden="true" />8
-                          mintes ago
+                          <i className="fa fa-clock-o" aria-hidden="true" />
+                          {question.created_on}
                         </span>{" "}
                       </div>
                     </div>
                     <div className="col-md-12 col-sm-12 col-xs-12">
-                      <div class="tagcloud">
-                        <a href="">bootstrap</a>
+                      <div className="tagcloud">
+                        <a href="">{question.major && question.major.major}</a>
+                      </div>
+                      <br />
+                      <div>
+                        {(profile && profile.is_expert) || "" ? (
+                          <div>
+                            <div>
+                              <button
+                                onClick={() =>
+                                  this.props.deleteQuestion(
+                                    questoinID,
+                                    this.props.history
+                                  )
+                                }
+                                className="btn btn-danger"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                            <br />
+                            <div>
+                              <button
+                                onClick={async () => {
+                                  await this.setState({
+                                    boolean:
+                                      this.state.counter > 0 ? true : false
+                                  });
+                                  this.props.approveQuestion(
+                                    questoinID,
+                                    this.state.boolean,
+                                    this.props.history
+                                  );
+                                  await this.props.resetCounter();
+                                }}
+                                className="btn btn-success"
+                              >
+                                Done
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div> </div>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div className="clearfix" />
-
                 <div className="thread-reply">
                   <h2>Thread Reply </h2>
                   <QAnswers id={questoinID} />
-                  <div>
-                    <AnswerForm id={questoinID} />
-                  </div>
                 </div>
+                <span> </span>
               </div>
 
               <div className="col-md-4 col-sm-12 col-xs-12 clearfix">
-                <div class="side-bar">
-                  <div class="widget">
-                    <div class="widget-image widget-image-sm">
-                      {" "}
+                <div className="side-bar">
+                  <div className="widget">
+                    <div className="widget-image widget-image-sm">
                       <img
                         alt="image"
                         src="https://external-preview.redd.it/1ZBAIokLtVcHkjHFryTz9zsOgq8B33bn-6SwZwkmrDg.png?auto=webp&s=4b5062c0c6339591198df367deced85fba8eac92"
                       />
-                      <div class="widget-image-content text-center">
-                        {" "}
+                      <div className="widget-image-content text-center">
                         <img
-                          class="img-thumbnail"
+                          className="img-thumbnail"
                           alt="avatar"
-                          src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Jon_Kyl%2C_official_portrait%2C_115th_Congress.jpg"
+                          src={question.asked_by && question.asked_by.image}
                         />
-                        <h2 class="widget-heading text-light">
-                          <strong>John Doe</strong>
+                        <h2 className="widget-heading text-light">
+                          <strong>
+                            {question.asked_by && question.asked_by.username}
+                          </strong>
                         </h2>
-                        <h4 class="widget-heading text-light-op">
+                        <h4 className="widget-heading text-light-op">
                           <br />
                           <br />
                         </h4>
                       </div>
                     </div>
-                    <div class="widget-content widget-content-full border-bottom">
-                      <div class="row text-center">
-                        <div class="col-xs-6 push-inner-top-bottom border-right">
-                          <h3 class="widget-heading">
-                            <i class=" icon-trophy push" /> <br />
-                            <small>
-                              <strong>34,157</strong> Experience
-                            </small>
-                          </h3>
-                        </div>
-                        <div class="col-xs-6 push-inner-top-bottom">
-                          <h3 class="widget-heading">
-                            <i class=" icon-profile-male themed-color-social push" />{" "}
-                            <br />
-                            <small>
-                              <strong>58.6k</strong> Followers
-                            </small>
-                          </h3>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="widget-content border-bottom">
+
+                    <div className="widget-content border-bottom">
                       <h4>About</h4>
                       <p>
                         Proin ac nibh rutrum lectus rhoncus eleifend. Sed
@@ -138,7 +155,20 @@ class QDetail extends Component {
                   </div>
                 </div>
               </div>
+              <div className="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                <AnswerForm id={questoinID} />
+              </div>
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </div>
@@ -148,7 +178,9 @@ class QDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    question: state.questions.question
+    question: state.questions.question,
+    counter: state.questions.counter,
+    profile: state.authenticationReducer.profile
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -157,7 +189,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(actionCreators.deleteQuestion(questionID, history)),
     fetchQDetail: questionID =>
       dispatch(actionCreators.fetchQDetail(questionID)),
-    reset: () => dispatch({ type: "RESET" })
+    reset: () => dispatch({ type: "RESET" }),
+    resetCounter: () => dispatch({ type: "RESET_COUNTER" }),
+    approveQuestion: (questionID, status, history) =>
+      dispatch(actionCreators.approveQuestion(questionID, status, history))
   };
 };
 
@@ -165,4 +200,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(QDetail);
-

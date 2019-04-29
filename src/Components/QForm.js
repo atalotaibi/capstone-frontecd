@@ -27,17 +27,15 @@ class QForm extends Component {
   };
 
   render() {
+    const { majors } = this.props;
+    console.log(majors);
+    const majorList = majors.map(major => major.major);
     return (
       <div className="form-group col-lg-12 col-12 mx-auto">
+        <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+        <br /> <br /> <br /> <br />
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            {/* <input
-            className="orm-control"
-            type="select"
-            placeholder="select"
-            name="major"
-            onChange={this.textChangeHandler}
-          /> */}
             <select
               type="select"
               name="major"
@@ -45,10 +43,21 @@ class QForm extends Component {
               className="form-control"
             >
               <option selected="selected">Select The Major</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
+              <option value="1">{majorList[0]}</option>
+              <option value="2">{majorList[1]}</option>
+              <option value="3">{majorList[2]}</option>
+              <option value="4">{majorList[3]}</option>
+              <option value="5">{majorList[4]}</option>
+              <option value="6">{majorList[5]}</option>
+              <option value="7">{majorList[6]}</option>
+              <option value="8">{majorList[7]}</option>
+              <option value="9">{majorList[8]}</option>
+              <option value="10">{majorList[9]}</option>
+              <option value="11">{majorList[10]}</option>
+              <option value="12">{majorList[11]}</option>
+              <option value="13">{majorList[12]}</option>
+              <option value="14">{majorList[13]}</option>
+              <option value="15">{majorList[14]}</option>
             </select>
           </div>
           <div className="form-group">
@@ -59,23 +68,23 @@ class QForm extends Component {
               placeholder="Body"
               onChange={this.textChangeHandler}
             />
-            {/* <input
-            className="form-control"
-            type="text"
-            placeholder="Ask"
-            name="q_text"
-            onChange={this.textChangeHandler}
-          /> */}
+
             <div>
-              {/* <Link to="/Qlist"> */}
-              <button type="submit" onClick={() => this.handleSubmit}>
+              <br />
+              <button
+                className="btn btn-dark col-12 mx-auto"
+                type="submit"
+                onClick={() => this.handleSubmit}
+              >
                 post
               </button>
-              {/* </Link> */}
             </div>
-            {/* <button type="submit">post</button> */}
           </div>
         </form>
+        <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+        <br /> <br /> <br /> <br />
+        <br /> <br /> <br /> <br />
+        <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
       </div>
     );
   }
@@ -110,6 +119,12 @@ QForm.formats = [
   "code-block"
 ];
 
+const mapStateToProps = state => {
+  return {
+    majors: state.questions.majors
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     askQ: (question, history) =>
@@ -118,6 +133,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(QForm);

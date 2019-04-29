@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
@@ -133,6 +132,19 @@ class RegistrationForm extends Component {
             Already have an account? <a href="#">Login here</a>.
           </div>
         </form>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }
@@ -150,4 +162,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(RegistrationForm);
-

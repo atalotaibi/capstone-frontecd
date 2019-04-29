@@ -41,75 +41,32 @@ library.add(faStroopwafel);
 class App extends Component {
   componentDidMount = async () => {
     await this.props.checkForExpiredToken();
+    this.props.fetchMajors();
   };
 
   render() {
     return (
-      //  <div className="App">
-      //   { <Search /> }
-      // //   {/* <SearchBar /> */}
-      // //   {/* <Qlist /> */}
-      // //   {/* <QForm /> */}
-      // //   <QAnswers />
-      // //   {/* <AnswerForm /> */}
-      //  </div>
-
-      // <div>
-      //   <div className="container-fluid my-4">
-      //     <Switch>
-      //       <BrowserRouter>
-      //         <Route exact path="/Home" component={Home} />
-      //         <Route exact path="/signup" component={RegistrationForm} />
-      //         <Route exact path="/login" component={LoginForm} />
-      //         <Route exact path="/AnswerForm" component={AnswerForm} />
-      //         <Route exact path="/Search" component={Search} />
-      //         <Route exact path="/Qlist" component={Qlist} />
-      //         <Route exact path="/QForm" component={QForm} />
-      //         <Route exact path="/QAnswers" component={QAnswers} />
-      //       </BrowserRouter>
-
-      //     </Switch>
-      //   </div>
-      // </div>
-
-      //  <div className="App">
-      //   { <Search /> }
-      // //   {/* <SearchBar /> */}
-      // //   {/* <Qlist /> */}
-      // //   {/* <QForm /> */}
-      // //   <QAnswers />
-      // //   {/* <AnswerForm /> */}
-      //  </div>
-
-      <div>
-        {/* <Search /> */}
-
-        <Switch>
-          <BrowserRouter>
-            <Header />
-            <Route path="/questions/:questionID" component={QDetail} />
-            <Route exact path="/login" component={LoginForm} />
-            <Route exact path="/home" component={home} />
-            <Route exact path="/signup" component={RegistrationForm} />
-            <Route exact path="/AnswerForm" component={AnswerForm} />
-            <Route exact path="/Search" component={Search} />
-            <Route exact path="/Qlist" component={Qlist} />
-            <Route exact path="/QForm" component={QForm} />
-            <Route exact path="/QAnswers" component={QAnswers} />
-          </BrowserRouter>
-        </Switch>
-        <Footer />
-
+      <div className="row">
+        <div className="col-12">
+          <Switch>
+            <BrowserRouter>
+              <Header />
+              <Route exact path="/login" component={LoginForm} />
+              <Route exact path="/home" component={home} />
+              <Route exact path="/signup" component={RegistrationForm} />
+              <Route exact path="/AnswerForm" component={AnswerForm} />
+              <Route exact path="/Search" component={Search} />
+              <Route exact path="/Qlist" component={Qlist} />
+              <Route exact path="/QForm" component={QForm} />
+              <Route exact path="/QAnswers" component={QAnswers} />
+              <Route path="/questions/:questionID" component={QDetail} />
+            </BrowserRouter>
+          </Switch>
+        </div>
+        <div className="col-12">
+          <Footer />
+        </div>
       </div>
-
-      // {/* <div className="App">
-      // <Search />
-      //   {/* <SearchBar /> */}
-      // <Qlist />
-      // <QForm />
-      //   <QAnswers />
-      //   {/* <AnswerForm /> */}
-      // </div> */}
     );
   }
 }
@@ -117,7 +74,8 @@ const mapStateToProps = state => {
   return {
     user: state.authenticationReducer.user,
     userLoading: state.authenticationReducer.userLoading,
-    questions: state.questions.filteredQuestions
+    questions: state.questions.filteredQuestions,
+    majors: state.questions.majors
   };
 };
 
@@ -125,7 +83,8 @@ const mapDispatchToProps = dispatch => {
   return {
     checkForExpiredToken: () => dispatch(actionCreators.checkForExpiredToken()),
     fetchAnswers: () => dispatch(actionCreators.fetchAnswers()),
-    fetchQ: () => dispatch(actionCreators.fetchQ())
+    fetchQ: () => dispatch(actionCreators.fetchQ()),
+    fetchMajors: () => dispatch(actionCreators.fetchMajors())
   };
 };
 
