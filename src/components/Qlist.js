@@ -5,10 +5,10 @@ import { connect } from "react-redux";
 import Qcards from "./Qcards";
 
 class Qlist extends Component {
-  componentDidMount() {
-    this.props.reset();
-    this.props.fetchQ();
-  }
+  // componentDidMount() {
+  //   this.props.reset();
+  //   this.props.fetchQ();
+  // }
 
   render() {
     const Qlist = this.props.filteredQuestions.map(question => (
@@ -26,7 +26,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchQ: () => dispatch(actionCreators.fetchQ()),
     reset: () => dispatch({ type: "RESET" })
   };
 };

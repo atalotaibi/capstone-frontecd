@@ -28,6 +28,10 @@ export const fetchQ = () => {
       const res = await instance.get("question/list/");
       const questions = res.data;
       dispatch({
+        type: actionTypes.SET_LOADING,
+        payload: true
+      });
+      dispatch({
         type: actionTypes.FETCH_Q,
         payload: questions
       });
@@ -89,9 +93,15 @@ export const sendAnswer = (answer, questionID, reset = () => {}) => {
 };
 
 export const filterQuestions = query => {
-  return {
-    type: actionTypes.QUESTION_FILTER,
-    payload: query
+  return async dispatch => {
+    dispatch({
+      type: actionTypes.SET_LOADING,
+      payload: true
+    });
+    dispatch({
+      type: actionTypes.QUESTION_FILTER,
+      payload: query
+    });
   };
 };
 
@@ -113,21 +123,40 @@ export const deleteQuestion = (questionID, history) => {
 };
 
 export const filterQuestionsByMajor = major => {
-  return {
-    type: actionTypes.FILTER_QUESTION_BY_Major,
-    payload: major
+  console.log("major action", major);
+  return async dispatch => {
+    dispatch({
+      type: actionTypes.SET_LOADING,
+      payload: true
+    });
+    dispatch({
+      type: actionTypes.FILTER_QUESTION_BY_Major,
+      payload: major
+    });
   };
 };
 export const filterQuestionsByAnswer = status => {
-  return {
-    type: actionTypes.FILTER_QUESTION_BY_ANSWER,
-    payload: status
+  return async dispatch => {
+    dispatch({
+      type: actionTypes.SET_LOADING,
+      payload: true
+    });
+    dispatch({
+      type: actionTypes.FILTER_QUESTION_BY_ANSWER,
+      payload: status
+    });
   };
 };
 export const filterQuestionsByApprove = status => {
-  return {
-    type: actionTypes.FILTER_QUESTION_BY_APPROVE,
-    payload: status
+  return async dispatch => {
+    dispatch({
+      type: actionTypes.SET_LOADING,
+      payload: true
+    });
+    dispatch({
+      type: actionTypes.FILTER_QUESTION_BY_APPROVE,
+      payload: status
+    });
   };
 };
 export const fetchQDetail = questionID => {
@@ -149,9 +178,7 @@ export const approveAnswer = (answerID, status) => {
         approved: status
       });
 
-
       const status_ = res.data;
-
 
       dispatch({
         type: actionTypes.APPROVE_ANSWER,
@@ -168,7 +195,6 @@ export const approveQuestion = (questionID, status, history) => {
       await instance.put(`${questionID}/qstatus`, { approved: status });
 
       history.push("/Home");
-
     } catch (err) {
       console.error("ERROR: ", err);
     }

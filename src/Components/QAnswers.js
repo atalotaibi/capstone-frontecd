@@ -11,12 +11,12 @@ class QAnswers extends Component {
     const questionID = this.props.id;
     this.props.fetchAnswers(questionID);
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.answers !== this.props.answers) {
-      const questionID = this.props.id;
-      this.props.fetchAnswers(questionID);
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.answers !== this.props.answers) {
+  //     const questionID = this.props.id;
+  //     this.props.fetchAnswers(questionID);
+  //   }
+  // }
 
   getView = () => {
     let answer = "";
@@ -29,10 +29,8 @@ class QAnswers extends Component {
   };
   render() {
     return (
-
       <div className="form-group col-lg-12 col-12 mx-auto">
         {this.getView()}
-
       </div>
     );
   }

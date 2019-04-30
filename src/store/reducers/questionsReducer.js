@@ -6,7 +6,7 @@ const initialState = {
   majors: [],
   answers: [],
   filteredQuestions: [],
-  loading: true,
+  loading: false,
   question1: [],
   flag_: false,
   counter: 0,
@@ -28,6 +28,12 @@ const questionsReducer = (state = initialState, action) => {
         filteredQuestions: [...action.payload],
         loading: false,
         flag_: false
+      };
+    case actionTypes.SET_LOADING:
+      return {
+        ...state,
+
+        loading: action.payload
       };
     case actionTypes.FETCH_MAJORS:
       return {
@@ -59,7 +65,8 @@ const questionsReducer = (state = initialState, action) => {
               return `${question.q_text}`
                 .toLowerCase()
                 .includes(action.payload);
-            })
+            }),
+        loading: false
       };
     case actionTypes.FILTER_QUESTION_BY_Major:
       console.log(state.questions);
@@ -67,19 +74,16 @@ const questionsReducer = (state = initialState, action) => {
         ...state,
         flag_: true,
         filteredQuestions: state.questions.filter(question => {
-
-          if (question.major.toString() === action.payload) {
-
+          if (question.major.major.toString() === action.payload) {
             return `${question.q_text}`.toLowerCase();
           }
         }),
         question1: state.questions.filter(question => {
-
-          if (question.major.toString() === action.payload) {
-
+          if (question.major.major.toString() === action.payload) {
             return `${question.q_text}`.toLowerCase();
           }
-        })
+        }),
+        loading: false
       };
     case actionTypes.FILTER_QUESTION_BY_ANSWER:
       return {
@@ -95,7 +99,8 @@ const questionsReducer = (state = initialState, action) => {
           if (question.answered.toString() === action.payload) {
             return `${question.q_text}`.toLowerCase();
           }
-        })
+        }),
+        loading: false
       };
     case actionTypes.FILTER_QUESTION_BY_APPROVE:
       return {
@@ -111,7 +116,8 @@ const questionsReducer = (state = initialState, action) => {
           if (question.approved.toString() === action.payload) {
             return `${question.q_text}`.toLowerCase();
           }
-        })
+        }),
+        loading: false
       };
     case actionTypes.DELETE_QUESTION:
       return {

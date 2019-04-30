@@ -40,18 +40,16 @@ import Header from "./Components/Header";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
-library.add(faStroopwafel);
-
 
 class App extends Component {
   componentDidMount = async () => {
     await this.props.checkForExpiredToken();
     this.props.fetchMajors();
+    // this.props.fetchQ();
   };
 
   render() {
     return (
-
       <div className="row">
         <div className="col-12">
           <Switch>
@@ -73,9 +71,7 @@ class App extends Component {
         </div>
         <div className="col-12">
           <Footer />
-
         </div>
-        
       </div>
     );
   }
@@ -97,8 +93,6 @@ const mapDispatchToProps = dispatch => {
     fetchMajors: () => dispatch(actionCreators.fetchMajors())
   };
 };
-
-
 
 export default withRouter(
   connect(
