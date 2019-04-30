@@ -71,7 +71,7 @@ export const signup = (userData, history) => {
       dispatch(login(userData, history));
       // }
     } catch (error) {
-      console.error(error.response.data);
+      console.error(error.response);
     }
   };
 };

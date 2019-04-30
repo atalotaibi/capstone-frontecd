@@ -9,7 +9,7 @@ import Home from "./Components/Home";
 import QForm from "./Components/QForm";
 import QAnswers from "./Components/QAnswers";
 import AnswerForm from "./Components/AnswerForm";
-import Profile from "./Components/Profile/ProfileDetail";
+import Profile from "./Components/Profile";
 // import Profile from "./Components/Profile/ProfileUpdate";
 import {
   Switch,
@@ -41,6 +41,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 
 import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
 
+
 class App extends Component {
   componentDidMount = async () => {
     await this.props.checkForExpiredToken();
@@ -62,7 +63,7 @@ class App extends Component {
               <Route exact path="/AnswerForm" component={AnswerForm} />
               <Route exact path="/Search" component={Search} />
               <Route exact path="/Qlist" component={Qlist} />
-
+              <Route exact path="/profile" component={Profile} />
               <Route exact path="/QForm" component={QForm} />
               <Route exact path="/QAnswers" component={QAnswers} />
               <Route path="/questions/:questionID" component={QDetail} />
