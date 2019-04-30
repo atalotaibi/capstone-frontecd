@@ -19,4 +19,4 @@ export class Loading extends Component {
   }
 }
 
-// export default Loading;
+export default Loading;
