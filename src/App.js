@@ -40,12 +40,13 @@ import Header from "./Components/Header";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
-library.add(faStroopwafel);
+
 
 class App extends Component {
   componentDidMount = async () => {
     await this.props.checkForExpiredToken();
     this.props.fetchMajors();
+    // this.props.fetchQ();
   };
 
   render() {

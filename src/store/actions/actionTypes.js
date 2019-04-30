@@ -19,3 +19,4 @@ export const RESET_COUNTER = "RESET_COUNTER";
 export const INCREMENT_COUNTER = "INCREMENT_COUNTER";
 
 export const FETCH_MAJORS = "FETCH_MAJORS";
+export const SET_LOADING = "SET_LOADING";

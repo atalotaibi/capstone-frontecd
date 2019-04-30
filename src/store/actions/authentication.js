@@ -49,10 +49,11 @@ export const login = userData => {
       setAuthToken(token);
       dispatch(setCurrentUser(decodedUser));
     } catch (error) {
-      // console.error(error.response.data);
+      console.error(error.response);
+
       dispatch({
         type: actionTypes.SET_ERRORS,
-        payload: error.response.data
+        payload: error.response
       });
     }
   };
