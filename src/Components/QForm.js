@@ -31,54 +31,78 @@ class QForm extends Component {
     console.log(majors);
     const majorList = majors.map(major => major.major);
     return (
-      <div className="form-group col-lg-12 col-12 mx-auto">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <select
-              type="select"
-              name="major"
-              onChange={this.majorChangeHandler}
-              className="form-control"
-            >
-              <option selected="selected">Select The Major</option>
-              <option value="1">{majorList[0]}</option>
-              <option value="2">{majorList[1]}</option>
-              <option value="3">{majorList[2]}</option>
-              <option value="4">{majorList[3]}</option>
-              <option value="5">{majorList[4]}</option>
-              <option value="6">{majorList[5]}</option>
-              <option value="7">{majorList[6]}</option>
-              <option value="8">{majorList[7]}</option>
-              <option value="9">{majorList[8]}</option>
-              <option value="10">{majorList[9]}</option>
-              <option value="11">{majorList[10]}</option>
-              <option value="12">{majorList[11]}</option>
-              <option value="13">{majorList[12]}</option>
-              <option value="14">{majorList[13]}</option>
-              <option value="15">{majorList[14]}</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <ReactQuill
-              modules={QForm.modules}
-              formats={QForm.formats}
-              name="q_text"
-              placeholder="Body"
-              onChange={this.textChangeHandler}
-            />
+      <div className="container">
+        <div className="form-group col-lg-12 col-12 mx-auto">
+          <br /> <br />
+          <div class="jumbotronn jumbotronn-fluidd">
+            <div class="container">
+              <h1 class="display-5">Question Instructions:</h1>
 
-            <div>
-              <br />
-              <button
-                className="btn btn-dark col-12 mx-auto"
-                type="submit"
-                onClick={() => this.handleSubmit}
-              >
-                post
-              </button>
+              <p class="lead">Rules you have to follow:</p>
+              <p class="lead">1.Focus on asking closed-ended questions.</p>
+              <p class="lead">2.Don't ask for two things at once.</p>
+              <p class="lead">3. Make sure your question is clear.</p>
+              <p class="lead">
+                4. Don't forget to choose the major related to your question.
+              </p>
             </div>
           </div>
-        </form>
+          <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <select
+                type="select"
+                name="major"
+                onChange={this.majorChangeHandler}
+                className="form-control"
+              >
+                <option selected="selected">Select The Major</option>
+                <option value="1">{majorList[0]}</option>
+                <option value="2">{majorList[1]}</option>
+                <option value="3">{majorList[2]}</option>
+                <option value="4">{majorList[3]}</option>
+                <option value="5">{majorList[4]}</option>
+                <option value="6">{majorList[5]}</option>
+                <option value="7">{majorList[6]}</option>
+                <option value="8">{majorList[7]}</option>
+                <option value="9">{majorList[8]}</option>
+                <option value="10">{majorList[9]}</option>
+                <option value="11">{majorList[10]}</option>
+                <option value="12">{majorList[11]}</option>
+                <option value="13">{majorList[12]}</option>
+                <option value="14">{majorList[13]}</option>
+                <option value="15">{majorList[14]}</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <ReactQuill
+                modules={QForm.modules}
+                formats={QForm.formats}
+                name="q_text"
+                placeholder="Body"
+                onChange={this.textChangeHandler}
+              />
+
+              <div>
+                <br />
+                <button
+                  className="btn btn-dark col-12 mx-auto"
+                  type="submit"
+                  onClick={() => this.handleSubmit}
+                >
+                  post
+                </button>
+              </div>
+            </div>
+          </form>
+          <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
       </div>
     );
   }

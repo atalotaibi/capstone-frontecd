@@ -148,8 +148,11 @@ class QDetail extends Component {
                     <div className="widget-content border-bottom">
                       <h4>About:</h4>
                       <p>
-                        name:{" "}
+                        First Name:{" "}
                         {question.asked_by && question.asked_by.first_name}{" "}
+                      </p>
+                      <p>
+                        Last Name:{" "}
                         {question.asked_by && question.asked_by.last_name}
                       </p>
                       <p>
