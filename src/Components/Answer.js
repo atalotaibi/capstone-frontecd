@@ -11,6 +11,9 @@ class Answer extends Component {
   };
 
   componentDidMount = () => {
+    if (this.props.user) {
+      this.props.fetchProfileDetail(this.props.user.user_id);
+    }
     if (this.props.answer.approved) {
       console.log(this.props.answer.approved);
       this.setState({ checked: !this.state.checked });
@@ -32,9 +35,21 @@ class Answer extends Component {
     const { profile } = this.props;
     return (
       <div className="media-block card-box ribbon-content">
-        <div class="ribbon base">
-          <span>Correct Answer</span>
-        </div>
+        {profile && profile.is_expert ? (
+          <></>
+        ) : (
+          <>
+            {" "}
+            {answer.approved ? (
+              <div class="ribbon base">
+                <span>Correct Answer</span>
+              </div>
+            ) : (
+              <></>
+            )}
+          </>
+        )}
+
         <div className="media-left">
           <a
             data-toggle="tooltip"
@@ -86,13 +101,7 @@ class Answer extends Component {
                   )}
                 </div>
               ) : (
-                <div>
-                  {answer.approved ? (
-                    <FontAwesomeIcon icon={faCheck} />
-                  ) : (
-                    <div />
-                  )}
-                </div>
+                <div />
               )}
             </div>
             {/* <div className="col-10">
@@ -114,13 +123,16 @@ class Answer extends Component {
 
 const mapStateToProps = state => {
   return {
-    profile: state.authenticationReducer.profile
+    profile: state.profileReducer.profile,
+    user: state.authenticationReducer.user
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     approveAnswer: (answerID, status) =>
       dispatch(actionCreators.approveAnswer(answerID, status)),
+    fetchProfileDetail: userID =>
+      dispatch(actionCreators.fetchProfileDetail(userID)),
     incrementCounter: status =>
       dispatch(actionCreators.incrementCounter(status))
   };

@@ -12,9 +12,11 @@ class QDetail extends Component {
   };
 
   async componentDidMount() {
+    if (this.props.user) {
+      this.props.fetchProfileDetail(this.props.user.user_id);
+    }
     console.log("from componentdidmount: ", this.props.match.params.questionID);
     await this.props.fetchQDetail(this.props.match.params.questionID);
-
   }
   componentDidUpdate(prevProps) {
     if (prevProps.counter !== this.props.counter) {
@@ -143,18 +145,15 @@ class QDetail extends Component {
                       </div>
                     </div>
 
-
                     <div className="widget-content border-bottom">
-                      <h4>About</h4>
+                      <h4>About:</h4>
                       <p>
-                        Proin ac nibh rutrum lectus rhoncus eleifend. Sed
-                        porttitor pretium venenatis. Suspendisse potenti.
-                        Aliquam quis ligula elit.
+                        name:{" "}
+                        {question.asked_by && question.asked_by.first_name}{" "}
+                        {question.asked_by && question.asked_by.last_name}
                       </p>
                       <p>
-                        Sed porttitor pretium venenatis. Suspendisse potenti.
-                        Aliquam quis ligula elit. Aliquam at orci ac neque
-                        semper dictum.
+                        email: {question.asked_by && question.asked_by.email}
                       </p>
                     </div>
                   </div>
@@ -185,7 +184,8 @@ const mapStateToProps = state => {
   return {
     question: state.questions.question,
     counter: state.questions.counter,
-    profile: state.authenticationReducer.profile
+    profile: state.profileReducer.profile,
+    user: state.authenticationReducer.user
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -194,6 +194,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(actionCreators.deleteQuestion(questionID, history)),
     fetchQDetail: questionID =>
       dispatch(actionCreators.fetchQDetail(questionID)),
+    fetchProfileDetail: userID =>
+      dispatch(actionCreators.fetchProfileDetail(userID)),
     reset: () => dispatch({ type: "RESET" }),
     resetCounter: () => dispatch({ type: "RESET_COUNTER" }),
     approveQuestion: (questionID, status, history) =>

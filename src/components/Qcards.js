@@ -8,7 +8,8 @@ import { connect } from "react-redux";
 class Qcards extends Component {
   render() {
     const { question } = this.props;
-    console.log("status", question.answered);
+    // console.log("status", question.answered);
+    console.log("qstatus", question.approved);
     return (
       <div>
         <div className="panel-body">
@@ -53,6 +54,15 @@ class Qcards extends Component {
                     </div>
                     <div className=" tagcloud">
                       <a href="">{question.major.major}</a>
+                    </div>
+                    <div>
+                      {question.approved ? (
+                        <div class="ribbon based">
+                          <span>Approved </span>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>
                   <div className="col-md-1 col-sm-2 col-xs-12">

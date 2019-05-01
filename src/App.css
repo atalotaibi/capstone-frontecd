@@ -927,6 +927,11 @@ dir {
   color: #fff;
   border-right: 5px solid #8bc4ea;
 }
+.ribbon.based {
+  background: #0d8f43;
+  color: #fff;
+  border-right: 5px solid #cde7d5;
+}
 
 .ribbon {
   position: absolute;
