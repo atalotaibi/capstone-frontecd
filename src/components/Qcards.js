@@ -11,7 +11,6 @@ class Qcards extends Component {
     console.log("status", question.answered);
     return (
       <div>
-
         <div className="panel-body">
           <div className="tab-content">
             <div id="tab1" className="tab-pane active">
@@ -69,14 +68,12 @@ class Qcards extends Component {
                         </a>
                       </li>
                       <span> </span>
-                      <li />
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     );
@@ -94,9 +91,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-
 export default connect(
   null,
   mapDispatchToProps
 )(Qcards);
-

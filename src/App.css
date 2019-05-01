@@ -77,7 +77,7 @@ body {
 .jumbotron {
   background-image: url("https://images.pexels.com/photos/48126/books-education-school-literature-48126.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-size: cover;
-  width: 99%;
+  width: 100%;
   margin-top: 5px;
   margin-left: 0.5%;
 }
@@ -130,20 +130,21 @@ html {
 }
 
 .search_input {
-  color: white;
+  color: black;
   border: 0;
   outline: 0;
   background: none;
-  width: 0;
+  width: 420px;
   caret-color: transparent;
   line-height: 40px;
   transition: width 0.4s linear;
+  font-size: x-large;
 }
 
 .searchbar:hover > .search_input {
   padding: 0 10px;
   width: 450px;
-  caret-color: red;
+  caret-color: black;
   transition: width 0.4s linear;
 }
 
@@ -236,10 +237,6 @@ html {
 }
 
 .topnav a {
-  background-color: #cee0ed;
-  /* color: white; */
-}
-.topnav a.active {
   background-color: #de8d72;
   /* color: white; */
 }
@@ -260,8 +257,7 @@ html {
 /* Add a black background color to the top navigation */
 .topnav {
   position: relative;
-  background-color: white;
-  overflow: hidden;
+  background-color: #cee0ed;
 }
 
 /* Style the links inside the navigation bar */
@@ -277,13 +273,13 @@ html {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #de8d72;
+  background-color: #cee0ed;
   color: black;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: white;
+  background-color: #ecf5fc;
   color: gray;
 }
 .tabs-warp.question-tab .borderbottom ul.tabs {
@@ -749,9 +745,7 @@ a {
 .panel-body {
   padding: 15px;
 }
-.tab-content {
-  margin-top: 50px;
-}
+
 .tab-content > .active {
   display: block;
 }
@@ -761,8 +755,8 @@ a {
 .listing-grid {
   border-bottom: 1px solid #e5eaef;
   display: inline-block;
-  margin-bottom: 50px;
-  padding-bottom: 50px;
+
+  padding-bottom: 20px;
   position: relative;
   width: 100%;
   min-height: 161px;
@@ -1327,4 +1321,37 @@ element.style {
   font-size: 20px;
   line-height: 26px;
   margin-bottom: 15px;
+}
+
+.topnavv {
+  position: relative;
+  background-color: white;
+}
+.topnavv a {
+  float: left;
+  color: gray;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  text-decoration: initial;
+
+  width: 20%;
+}
+
+.topnavv a {
+  background-color: #cee0ed;
+  /* color: white; */
+}
+
+.topnavv a {
+  background-color: #cee0ed;
+  /* color: white; */
+}
+.topnavv a.active {
+  background-color: #de8d72;
+  /* color: white; */
+}
+.topnavv a:hover {
+  background-color: #de8d72;
+  color: black;
 }

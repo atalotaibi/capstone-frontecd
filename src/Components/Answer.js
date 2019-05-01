@@ -12,12 +12,10 @@ class Answer extends Component {
 
   componentDidMount = () => {
     if (this.props.answer.approved) {
-
       console.log(this.props.answer.approved);
       this.setState({ checked: !this.state.checked });
       this.props.incrementCounter(true);
     }
-
   };
 
   handleClick = async () => {
@@ -33,8 +31,10 @@ class Answer extends Component {
     const answer = this.props.answer;
     const { profile } = this.props;
     return (
-
       <div className="media-block card-box ribbon-content">
+        <div class="ribbon base">
+          <span>Correct Answer</span>
+        </div>
         <div className="media-left">
           <a
             data-toggle="tooltip"
@@ -107,7 +107,6 @@ class Answer extends Component {
         </div>
         <br />
         <br />
-
       </div>
     );
   }

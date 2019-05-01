@@ -48,7 +48,7 @@ class Home extends Component {
                       className="search_input"
                       type="text"
                       name=""
-                      placeholder="Search..."
+                      placeholder="lookup your question..."
                       onChange={event => {
                         this.props.filterQuestions(event.target.value);
                       }}
@@ -114,7 +114,7 @@ class Home extends Component {
             <div className="topnav-right" />
           </div>
           <div>
-            <div className="topnav" style={{ marginTop: "20px" }}>
+            <div className="topnavv" style={{ marginTop: "20px" }}>
               <div>
                 <a
                   onClick={() =>
