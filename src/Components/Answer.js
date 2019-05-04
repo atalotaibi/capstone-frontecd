@@ -81,23 +81,44 @@ class Answer extends Component {
               {profile && profile.is_expert ? (
                 <div>
                   {answer.approved ? (
-                    <div className="">
+                    <>
+                      {/* <div className="">
                       <a
                         class="btn btn-sm btn-default btn-hover-primary"
                         onClick={this.changeApproved}
                       >
                         Mark As Uncorrect
                       </a>
-                    </div>
+                    </div> */}
+                      <div className="form-check form-check-inline">
+                        <input
+                          defaultChecked
+                          className="form-check-input"
+                          type="checkbox"
+                          name="inlineCheckbox"
+                          onChange={this.changeApproved}
+                        />
+                      </div>
+                    </>
                   ) : (
-                    <div className="">
+                    <>
+                      {/* <div className="">
                       <a
                         class="btn btn-sm btn-default btn-hover-primary"
                         onClick={this.handleClick}
                       >
                         Mark As Correct
                       </a>
-                    </div>
+                    </div> */}
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          name="inlineCheckbox"
+                          onChange={this.handleClick}
+                        />
+                      </div>
+                    </>
                   )}
                 </div>
               ) : (
